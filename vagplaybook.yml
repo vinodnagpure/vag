@@ -1,0 +1,14 @@
+---
+- name: new webserver playbook
+  hosts: slave
+
+  tasks: 
+    - name: Package Installation
+      yum: name=httpd state=present
+
+    - name: Amending webserver configuration file
+      copy: dest=/var/www/html/index.html content="This is my git managed server file"
+
+    - name: starting webserver services
+      service: name=httpd state=started	
+...
